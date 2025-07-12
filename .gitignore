@@ -1,6 +1,9 @@
 # folders
-**/
+data/
+__pycache__/
+
 
 # files
 *.zip
-*.png
+*.pt
+*.json
