@@ -2,5 +2,5 @@
 **/
 
 # files
-.zip
-.png
+*.zip
+*.png
