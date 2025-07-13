@@ -1,7 +1,8 @@
 # folders
 data/
 __pycache__/
-static/generated/
+static/generated/*
+!static/generated/README.md
 venv/
 
 
@@ -10,3 +11,4 @@ venv/
 *.pt
 *.json
 *.pem
+*.tar

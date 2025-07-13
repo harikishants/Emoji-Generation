@@ -1,27 +1,10 @@
-# cache
-__pycache__/
-*.pyo
-*.so
+# ignore all files
+**
 
-# folders
-data/
-output/
-simple_gan/
-
-# Large files
-*.zip
-*.pt
-*.json
-*.pem
-
-# git 
-.gitignore
-.git/
-*.log
-*.env
-
-# other files
-GAN.py
-diffusion.py
-prometheus.yml
-
+# required files
+!models/README.md
+!static/generated/README.md
+!templates/*
+!app.py
+!generate.py
+!requirements.txt

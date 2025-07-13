@@ -4,7 +4,7 @@ import os
 import boto3
 
 def load_model(model_path, bucket_name=None, s3_key=None):
-
+    print(f'[debug] {model_path}')
     if os.path.exists(model_path):
         print("[info] Loading from local")
         model = torch.load(model_path, map_location="cpu")
