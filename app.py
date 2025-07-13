@@ -23,7 +23,7 @@ def generate(request: Request, num_images: int = Form(...)):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model = load_model(
-                        model_path="trained_models/unet.pt",
+                        model_path="unet.pt",
                         bucket_name="trained-models-aws",
                         s3_key="unet.pt"
                         # s3://trained-models-aws/unet.pt
