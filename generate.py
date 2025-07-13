@@ -1,9 +1,26 @@
 from diffusers import UNet2DModel, DDPMScheduler, DDPMPipeline
 import torch
 import os
+import boto3
 
+def load_model(model_path, bucket_name=None, s3_key=None):
 
-def generate_emojis(model_path, save_dir="static/generated", num_images=5):
+    if os.path.exists(model_path):
+        print("[info] Loading from local")
+        model = torch.load(model_path, map_location="cpu")
+
+    elif bucket_name and s3_key:
+        print("[info] Loading from AWS s3 storage")
+        s3 = boto3.client("s3")
+        s3.download_file(bucket_name, s3_key, model_path)
+        model = torch.load(model_path, map_location="cpu")
+
+    else:
+        raise FileNotFoundError(f"Model not found locally and no S3 details provided.")
+
+    return model
+
+def generate_emojis(model, save_dir="static/generated", num_images=5):
 
     # device = "cuda" if torch.cuda.is_available() else "cpu"
     device = "cpu"
@@ -18,7 +35,7 @@ def generate_emojis(model_path, save_dir="static/generated", num_images=5):
                         up_block_types=("AttnUpBlock2D", "UpBlock2D", "UpBlock2D", "UpBlock2D"),
                         )
 
-    unet.load_state_dict(torch.load(model_path, map_location=device))
+    unet.load_state_dict(model)
 
     noise_scheduler = DDPMScheduler(num_train_timesteps=1000)
     pipeline = DDPMPipeline(unet=unet, scheduler=noise_scheduler).to(device)

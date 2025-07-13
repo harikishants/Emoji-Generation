@@ -2,9 +2,10 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from generate import generate_emojis
+from generate import generate_emojis, load_model
 import uuid
 from pathlib import Path
+
 
 app = FastAPI()
 
@@ -21,7 +22,14 @@ def generate(request: Request, num_images: int = Form(...)):
     output_dir = Path("static/generated") / session_id
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    generate_emojis(model_path = 'trained_models/unet.pt', num_images=num_images, save_dir=output_dir)
+    model = load_model(
+                        model_path="trained_models/unet.pt",
+                        bucket_name="trained-models-aws",
+                        s3_key="unet.pt"
+                        # s3://trained-models-aws/unet.pt
+                        )
+
+    generate_emojis(model = model, num_images=num_images, save_dir=output_dir)
 
     image_paths = [f"/static/generated/{session_id}/{img.name}" for img in output_dir.iterdir() if img.suffix == ".png"]
 
