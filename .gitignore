@@ -1,9 +1,12 @@
 # folders
 data/
 __pycache__/
+static/generated/
+venv/
 
 
 # files
 *.zip
 *.pt
 *.json
+*.pem

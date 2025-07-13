@@ -1,0 +1,30 @@
+# cache
+__pycache__/
+*.pyo
+*.so
+
+# folders
+data/
+output/
+simple_gan/
+static/generated/
+
+# Large files
+*.zip
+*.pt
+*.json
+*.pem
+
+# git 
+.gitignore
+.git/
+*.log
+*.env
+
+
+# training files
+diffusion.py
+
+# other files
+GAN.py
+

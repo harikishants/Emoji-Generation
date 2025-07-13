@@ -5,7 +5,8 @@ import os
 
 def generate_emojis(model_path, save_dir="static/generated", num_images=5):
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cpu"
 
     unet = UNet2DModel(
                         sample_size=32,
