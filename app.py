@@ -5,9 +5,12 @@ from fastapi.templating import Jinja2Templates
 from generate import generate_emojis, load_model
 import uuid
 from pathlib import Path
+from prometheus_fastapi_instrumentator import Instrumentator
 
 
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")

@@ -20,10 +20,8 @@ simple_gan/
 *.log
 *.env
 
-
-# training files
-diffusion.py
-
 # other files
 GAN.py
+diffusion.py
+prometheus.yml
 
