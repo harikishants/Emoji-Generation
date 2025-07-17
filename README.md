@@ -1,13 +1,17 @@
 # Emoji Generation
 
-A project for generating custom emojis using GANs and Diffusion Models, built with FastAPI and PyTorch.
+Generates custom emojis using GANs and Diffusion Models, built with FastAPI and PyTorch. Deployed as a FastAPI-based web app, fully containerized with Docker and scalable through AWS infrastructure.
 
 ## Features
 
-- **Diffusion Model Emoji Generation**: Generate emojis using a trained diffusion model via a web interface.
-- **GAN Training**: Train GANs on emoji datasets for generative experiments.
-- **FastAPI Web App**: Simple web UI for generating emojis and viewing results.
-- **Docker Support**: Easily build and run the app in a container.
+- Generate 32x32 emojis using a trained diffusion model and GANs
+- Trained diffusion model using `UNet2DModel` and `DDPMScheduler` from Hugging Face `diffusers`
+- Evaluated using **Frechet Inception Distance (FID)**
+- REST API built using **FastAPI**
+- Dockerized and deployed via **AWS EC2**
+- Real-time traffic monitoring via **Prometheus**
+- ☁CI/CD integration with **AWS CodePipeline & CodeBuild**
+- Model artifacts stored and accessed from **AWS S3**
 
 ## Project Structure
 
@@ -18,6 +22,16 @@ A project for generating custom emojis using GANs and Diffusion Models, built wi
 - `templates/index.html` — Web UI template.
 - `requirements.txt` — Python dependencies.
 - `Dockerfile` — Container build instructions.
+
+  ## Tech Stack
+
+- Python, PyTorch, FastAPI
+- Hugging Face `diffusers`
+- Docker, AWS EC2, S3, ECR
+- Prometheus (monitoring)
+- GitHub Actions / AWS CodePipeline (CI/CD)
+- VS Code Remote SSH
+
 
 ## Getting Started
 
