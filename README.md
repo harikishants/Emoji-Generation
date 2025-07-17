@@ -23,7 +23,7 @@ Generates custom emojis using GANs and Diffusion Models, built with FastAPI and 
 - `requirements.txt` — Python dependencies.
 - `Dockerfile` — Container build instructions.
 
-  ## Tech Stack
+## Tech Stack
 
 - Python, PyTorch, FastAPI
 - Hugging Face `diffusers`
