@@ -10,7 +10,7 @@ Generates custom emojis using GANs and Diffusion Models, built with FastAPI and 
 - REST API built using **FastAPI**
 - Dockerized and deployed via **AWS EC2**
 - Real-time traffic monitoring via **Prometheus**
-- ☁CI/CD integration with **AWS CodePipeline & CodeBuild**
+- CI/CD integration with **AWS CodePipeline & CodeBuild**
 - Model artifacts stored and accessed from **AWS S3**
 
 ## Project Structure
