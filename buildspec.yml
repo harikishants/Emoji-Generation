@@ -21,8 +21,8 @@ phases:
       - docker tag image-emoji $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest
       - echo Writing imagedefinitions.json...
-      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest\"}]"
-      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest\"}]" > imagedefinitions.json
+      - echo "[{\"name\":\"image-emoji\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest\"}]"
+      - echo "[{\"name\":\"image-emoji\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest\"}]" > imagedefinitions.json
 
 artifacts:
   files:
