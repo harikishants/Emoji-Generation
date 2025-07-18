@@ -19,11 +19,10 @@ phases:
   post_build:
     commands:
       - echo Tagging and pushing the Docker image...
-      - REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName"
-      - docker tag $ImageName $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:latest
+      - docker tag $ImageName $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest
       - echo Writing imagedefinitions.json...
-      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$REPOSITORY_URI:latest\"}]" > imagedefinitions.json
+      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest\"}]" > imagedefinitions.json
 
 artifacts:
   files:
