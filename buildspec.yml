@@ -4,7 +4,6 @@ env:
   variables:
     AWS_ACCOUNT_ID: "675045716830"
     REGION: "us-east-1"
-    ImageName: "repo-emoji-gen/image-emoji"
 
 phases:
   pre_build:
@@ -14,15 +13,15 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - docker build -t $ImageName .
+      - docker build -t image-emoji .
       - docker images
   post_build:
     commands:
       - echo Tagging and pushing the Docker image...
-      - docker tag $ImageName $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest
+      - docker tag image-emoji $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest
       - echo Writing imagedefinitions.json...
-      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName:latest\"}]" > imagedefinitions.json
+      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen:latest\"}]" > imagedefinitions.json
 
 artifacts:
   files:
