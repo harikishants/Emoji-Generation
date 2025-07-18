@@ -5,7 +5,6 @@ env:
     AWS_ACCOUNT_ID: "675045716830"
     REGION: "us-east-1"
     ImageName: "image-emoji"
-    REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen/$ImageName"
 
 phases:
   pre_build:
@@ -20,6 +19,7 @@ phases:
   post_build:
     commands:
       - echo Tagging and pushing the Docker image...
+      - REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen/$ImageName"
       - docker tag $ImageName:latest $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:latest
       - echo Writing imagedefinitions.json...
