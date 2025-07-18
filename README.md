@@ -1,10 +1,10 @@
 # Emoji Generation
 
-Generates custom emojis using GANs and Diffusion Models, built with FastAPI and PyTorch. Deployed as a FastAPI-based web app, fully containerized with Docker and scalable through AWS infrastructure.
+Generates custom emojis Diffusion Model, built with FastAPI and PyTorch. Deployed as a FastAPI-based web app, fully containerized with Docker and scalable through AWS infrastructure.
 
 ## Features
 
-- Generate 32x32 emojis using a trained diffusion model and GANs
+- Generate 32x32 emojis using a trained diffusion model.
 - Trained diffusion model using `UNet2DModel` and `DDPMScheduler` from Hugging Face `diffusers`
 - Evaluated using **Frechet Inception Distance (FID)**
 - REST API built using **FastAPI**
