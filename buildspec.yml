@@ -5,7 +5,7 @@ env:
     AWS_ACCOUNT_ID: "675045716830"
     REGION: "us-east-1"
     ImageName: "image-emoji"
-    REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName"
+    REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/repo-emoji-gen/$ImageName"
 
 phases:
   pre_build:
