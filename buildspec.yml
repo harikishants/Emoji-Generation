@@ -1,7 +1,30 @@
-version: 0.2
+version: "0.2"
+
+env:
+  variables:
+    AWS_ACCOUNT_ID: "675045716830"
+    REGION: "us-east-1"
+    ImageName: "image-emoji"
+    REPOSITORY_URI: "$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$ImageName"
 
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
-      - docker build -t emoji-generator .
+      - docker build -t $ImageName .
+      - docker images
+  post_build:
+    commands:
+      - echo Tagging and pushing the Docker image...
+      - docker tag $ImageName:latest $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:latest
+      - echo Writing imagedefinitions.json...
+      - echo "[{\"name\":\"$ImageName\",\"imageUri\":\"$REPOSITORY_URI:latest\"}]" > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

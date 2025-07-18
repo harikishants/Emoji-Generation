@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging into Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 675045716830.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo "Pulling image from ECR..."
+      - docker pull 675045716830.dkr.ecr.us-east-1.amazonaws.com/image-emoji:latest
+      - echo "Running container for test..."
+      - docker run -d -p 8000:8000 --name test-container 675045716830.dkr.ecr.us-east-1.amazonaws.com/image-emoji:latest
+      - sleep 5
+      - echo "Running test script..."
+      - pip install requests pytest
+      - pytest tests/
+  post_build:
+    commands:
+      - docker stop test-container
+      - docker rm test-container
